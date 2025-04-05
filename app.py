@@ -4,9 +4,10 @@ import time
 import re
 
 app = FastAPI()
-@app.get("/")
+@app.api_route("/", methods=["GET", "HEAD"])
 def read_root():
     return {"message": "Welcome to the File Upload API"}
+
 
 app.add_middleware(
     CORSMiddleware,
