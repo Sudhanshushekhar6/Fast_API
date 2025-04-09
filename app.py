@@ -6,7 +6,7 @@ import re
 
 app = FastAPI()
 
-# Enable CORS
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -15,7 +15,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Root endpoint with a welcome message and link to upload page
+
 @app.get("/", response_class=HTMLResponse)
 def read_root():
     return """
@@ -30,7 +30,7 @@ def read_root():
     </html>
     """
 
-# Upload page with a file upload form
+
 @app.get("/upload-page", response_class=HTMLResponse)
 def upload_page():
     return """
@@ -49,12 +49,12 @@ def upload_page():
     </html>
     """
 
-# Optional GET handler for /upload/ to provide guidance if someone sends a GET request
+
 @app.get("/upload/")
 def upload_info():
     return {"info": "This endpoint accepts POST requests only for file uploads."}
 
-# POST endpoint to handle file uploads
+
 @app.post("/upload/")
 async def upload_file(file: UploadFile = File(...)):
     start_time = time.time()
